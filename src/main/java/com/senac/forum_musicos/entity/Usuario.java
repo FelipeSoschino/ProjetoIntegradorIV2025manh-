@@ -2,7 +2,7 @@ package com.senac.forum_musicos.entity;
 
 import jakarta.persistence.*;
 
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name="usuario")
@@ -22,7 +22,7 @@ public class Usuario {
     @Column(name= "usuario_foto")
     private String foto;
     @Column(name= "usuario_datacriacao")
-    private Timestamp data;
+    private LocalDateTime data;
     @Column(name="usuario_status")
     private int status;
 
