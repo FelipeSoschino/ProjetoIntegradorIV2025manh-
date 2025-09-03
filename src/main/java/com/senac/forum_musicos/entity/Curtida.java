@@ -7,4 +7,6 @@ import jakarta.persistence.*;
 public class Curtida {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="curtida_id")
+    private int id;
 }

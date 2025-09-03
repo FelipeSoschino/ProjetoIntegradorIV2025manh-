@@ -3,6 +3,7 @@ package com.senac.forum_musicos.entity;
 import jakarta.persistence.*;
 import jakarta.websocket.ClientEndpoint;
 
+import java.sql.Blob;
 import java.time.LocalDateTime;
 
 @Entity
@@ -17,6 +18,9 @@ public class Post {
 
     @Column(name="post_texto")
     private String texto;
+
+    @Column(name="post_arquivo")
+    private Blob arquivo;
 
     @Column(name="post_data_criacao")
     private LocalDateTime data;

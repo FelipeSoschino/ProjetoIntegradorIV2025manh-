@@ -7,4 +7,6 @@ import jakarta.persistence.*;
 public class Comentario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="comentario_id")
+    private int id;
 }
