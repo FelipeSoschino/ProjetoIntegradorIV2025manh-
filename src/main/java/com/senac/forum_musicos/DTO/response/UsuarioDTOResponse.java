@@ -64,4 +64,24 @@ public class UsuarioDTOResponse {
     private Blob foto;
 
     private LocalDateTime data;
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
+    private int status;
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    private String email;
 }

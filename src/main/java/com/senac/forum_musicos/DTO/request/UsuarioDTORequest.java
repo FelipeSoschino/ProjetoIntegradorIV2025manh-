@@ -48,6 +48,16 @@ public class UsuarioDTORequest {
 
     private String nome;
 
+    public String getEmial() {
+        return emial;
+    }
+
+    public void setEmial(String emial) {
+        this.emial = emial;
+    }
+
+    private String emial;
+
     private String senha;
 
     private String bio;

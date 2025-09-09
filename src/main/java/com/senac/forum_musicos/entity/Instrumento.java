@@ -37,10 +37,23 @@ public class Instrumento {
     @Column(name="instrumento_nome")
     private String nome;
 
+    public int getStatus() {
+        return Status;
+    }
+
+    public void setStatus(int status) {
+        Status = status;
+    }
+
+    @Column(name = "instrumento_status")
+    private int Status;
+
     @ManyToOne
     @JsonIgnore
     @JoinColumn(name = "usuario_id", nullable = false)
     private Usuario usuario;
+
+
 
 
 
