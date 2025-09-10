@@ -43,10 +43,13 @@ public class TopicoService {
 
 
     public TopicoDTOResponse criarTopico(TopicoDTORequest topicoDTORequest){
-
+        Usuario usuario = usuarioRepository.findById(topicoDTORequest.getUsuario())
+                .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
 
         Topico topico = modelMapper.map(topicoDTORequest, Topico.class);
 
+        // Setar o usuário no tópico
+        topico.setUsuario(usuario);
 
 
         // Salvar
