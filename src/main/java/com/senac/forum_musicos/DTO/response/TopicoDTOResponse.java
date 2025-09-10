@@ -50,4 +50,14 @@ public class TopicoDTOResponse {
     private int status;
 
     private int categoria;
+
+    public int getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(int usuario) {
+        this.usuario = usuario;
+    }
+
+    private int usuario;
 }

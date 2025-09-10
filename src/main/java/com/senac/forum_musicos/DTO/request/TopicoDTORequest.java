@@ -1,5 +1,7 @@
 package com.senac.forum_musicos.DTO.request;
 
+import java.time.LocalDateTime;
+
 public class TopicoDTORequest {
     public String getTitulo() {
         return titulo;
@@ -40,4 +42,24 @@ public class TopicoDTORequest {
     private int status;
 
     private int categoria;
+
+    public LocalDateTime getData() {
+        return data;
+    }
+
+    public void setData(LocalDateTime data) {
+        this.data = data;
+    }
+
+    private LocalDateTime data;
+
+    public int getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(int usuario) {
+        this.usuario = usuario;
+    }
+
+    private int usuario;
 }

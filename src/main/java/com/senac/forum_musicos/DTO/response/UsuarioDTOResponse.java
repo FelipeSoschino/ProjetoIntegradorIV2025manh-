@@ -37,13 +37,7 @@ public class UsuarioDTOResponse {
         this.bio = bio;
     }
 
-    public Blob getFoto() {
-        return foto;
-    }
 
-    public void setFoto(Blob foto) {
-        this.foto = foto;
-    }
 
     public LocalDateTime getData() {
         return data;
@@ -61,7 +55,11 @@ public class UsuarioDTOResponse {
 
     private String bio;
 
-    private Blob foto;
+    public void setFoto(byte[] foto) {
+        this.foto = foto;
+    }
+
+    private byte[] foto;
 
     private LocalDateTime data;
 

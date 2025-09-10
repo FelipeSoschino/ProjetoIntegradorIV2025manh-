@@ -11,10 +11,12 @@ import com.senac.forum_musicos.DTO.response.UsuarioDTOUpdateResponse;
 import com.senac.forum_musicos.entity.Topico;
 import com.senac.forum_musicos.entity.Usuario;
 import com.senac.forum_musicos.repository.TopicoRepository;
+import com.senac.forum_musicos.repository.UsuarioRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -22,8 +24,11 @@ public class TopicoService {
 
     private TopicoRepository topicoRepository;
 
-    public TopicoService(TopicoRepository topicoRepository){
+    private UsuarioRepository usuarioRepository;
+
+    public TopicoService(TopicoRepository topicoRepository, UsuarioRepository usuarioRepository){
         this.topicoRepository = topicoRepository;
+        this.usuarioRepository = usuarioRepository;
     }
     @Autowired
     private ModelMapper modelMapper;
@@ -38,12 +43,18 @@ public class TopicoService {
 
 
     public TopicoDTOResponse criarTopico(TopicoDTORequest topicoDTORequest){
+
+
         Topico topico = modelMapper.map(topicoDTORequest, Topico.class);
 
-        Topico topicoSave = this.topicoRepository.save(topico);
-        TopicoDTOResponse topicoDTOResponse = modelMapper.map(topicoSave, TopicoDTOResponse.class);
-        return topicoDTOResponse;}
 
+
+        // Salvar
+        Topico topicoSave = this.topicoRepository.save(topico);
+
+        // Mapear para DTO de resposta
+        return modelMapper.map(topicoSave, TopicoDTOResponse.class);
+    }
     public TopicoDTOResponse atualizarTopico(Integer topicoId, TopicoDTORequest topicoDTORequest){
         Topico topico = this.listarTopicoPorId(topicoId);
         if(topico!=null){

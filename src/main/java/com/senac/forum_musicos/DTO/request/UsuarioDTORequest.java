@@ -1,7 +1,7 @@
 package com.senac.forum_musicos.DTO.request;
 
 
-import java.sql.Blob;
+import java.io.File;
 import java.time.LocalDateTime;
 
 public class UsuarioDTORequest {
@@ -30,13 +30,6 @@ public class UsuarioDTORequest {
         this.bio = bio;
     }
 
-    public Blob getFoto() {
-        return foto;
-    }
-
-    public void setFoto(Blob foto) {
-        this.foto = foto;
-    }
 
     public LocalDateTime getData() {
         return data;
@@ -48,22 +41,40 @@ public class UsuarioDTORequest {
 
     private String nome;
 
-    public String getEmial() {
-        return emial;
+
+    public String getEmail() {
+        return email;
     }
 
-    public void setEmial(String emial) {
-        this.emial = emial;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    private String emial;
+    private String email;
 
     private String senha;
 
     private String bio;
 
-    private Blob foto;
+    public File getFoto() {
+        return foto;
+    }
 
+    public void setFoto(File foto) {
+        this.foto = foto;
+    }
+
+    private File foto;
     private LocalDateTime data;
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
+    private int status;
 
 }

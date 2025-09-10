@@ -40,7 +40,7 @@ public class Comentario {
 
     @ManyToOne
     @JsonIgnore
-    @JoinColumn(name = "resposta_id", nullable = false)
+    @JoinColumn(name = "comentario_resposta_id", nullable = false)
     private Comentario comentario;
 
     public int getId() {

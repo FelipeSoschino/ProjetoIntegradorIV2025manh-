@@ -2,6 +2,7 @@ package com.senac.forum_musicos.entity;
 
 import jakarta.persistence.*;
 
+import java.io.File;
 import java.sql.Blob;
 import java.time.LocalDateTime;
 import java.util.Set;
@@ -42,13 +43,6 @@ public class Usuario {
         this.bio = bio;
     }
 
-    public Blob getFoto() {
-        return foto;
-    }
-
-    public void setFoto(Blob foto) {
-        this.foto = foto;
-    }
 
     public LocalDateTime getData() {
         return data;
@@ -132,16 +126,27 @@ public class Usuario {
 
     @Column(name = "usuario_email")
     private String email;
-    @Column(name = "usuario_senhaHash")
+    @Column(name = "usuario_senha_hash")
     private String senha;
     @Column(name= "usuario_bio")
     private String bio;
-    @Column(name= "usuario_foto")
-    private Blob foto;
+
+    public File getFoto() {
+        return foto;
+    }
+
+    public void setFoto(File foto) {
+        this.foto = foto;
+    }
+
+    @Column(name = "usuario_foto")
+    private File foto;
+
     @Column(name= "usuario_datacriacao")
     private LocalDateTime data;
     @Column(name="usuario_status")
     private int status;
+
 
 
 

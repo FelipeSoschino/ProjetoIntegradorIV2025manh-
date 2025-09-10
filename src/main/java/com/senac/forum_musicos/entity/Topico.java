@@ -110,9 +110,10 @@ public class Topico {
     @Column(name="topico_categoria")
     private int categoria;
 
+
     @ManyToOne
     @JsonIgnore
-    @JoinColumn(name = "usuario_id")
+    @JoinColumn(name = "usuario_id", nullable = false)
     private Usuario usuario;
 
     @OneToMany(mappedBy = "topico")
