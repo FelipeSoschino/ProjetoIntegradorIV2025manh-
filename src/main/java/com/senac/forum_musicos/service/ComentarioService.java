@@ -9,8 +9,13 @@ import com.senac.forum_musicos.DTO.response.ComentarioDTOUpdateResponse;
 import com.senac.forum_musicos.DTO.response.UsuarioDTOResponse;
 import com.senac.forum_musicos.DTO.response.UsuarioDTOUpdateResponse;
 import com.senac.forum_musicos.entity.Comentario;
+import com.senac.forum_musicos.entity.Post;
+import com.senac.forum_musicos.entity.Topico;
 import com.senac.forum_musicos.entity.Usuario;
 import com.senac.forum_musicos.repository.ComentarioRepository;
+import com.senac.forum_musicos.repository.PostRepository;
+import com.senac.forum_musicos.repository.TopicoRepository;
+import com.senac.forum_musicos.repository.UsuarioRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,6 +26,10 @@ import java.util.List;
 public class ComentarioService {
 
     private ComentarioRepository comentarioRepository;
+
+    private UsuarioRepository usuarioRepository;
+    private PostRepository postRepository;
+    private TopicoRepository topicoRepository;
 
     public ComentarioService(ComentarioRepository comentarioRepository){
         this.comentarioRepository = comentarioRepository;
@@ -40,7 +49,18 @@ public class ComentarioService {
 
 
     public ComentarioDTOResponse criarComentario(ComentarioDTORequest comentarioDTORequest){
+        Usuario usuario = usuarioRepository.findById(comentarioDTORequest.getUsuario())
+                .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
+        Post post = postRepository.findById(comentarioDTORequest.getPost())
+                .orElseThrow(() -> new RuntimeException("Post não encontrado"));
+
+        Topico topico = topicoRepository.findById(comentarioDTORequest.getTopico()).orElse(null);
+
         Comentario comentario = modelMapper.map(comentarioDTORequest, Comentario.class);
+
+        comentario.setUsuario(usuario);
+        comentario.setPost(post);
+        comentario.setTopico(topico);
 
         Comentario comentarioSave = this.comentarioRepository.save(comentario);
         ComentarioDTOResponse comentarioDTOResponse = modelMapper.map(comentarioSave, ComentarioDTOResponse.class);

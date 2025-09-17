@@ -1,5 +1,6 @@
 package com.senac.forum_musicos.DTO.request;
 
+import java.io.File;
 import java.sql.Blob;
 
 public class PostDTORequest {
@@ -13,6 +14,35 @@ public class PostDTORequest {
     }
 
     private String texto;
+
+    public int getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(int usuario) {
+        this.usuario = usuario;
+    }
+
+    public int getTopico() {
+        return topico;
+    }
+
+    public void setTopico(int topico) {
+        this.topico = topico;
+    }
+
+    public File getArquivo() {
+        return arquivo;
+    }
+
+    public void setArquivo(File arquivo) {
+        this.arquivo = arquivo;
+    }
+
+    private int usuario;
+    private int topico;
+
+    private File arquivo;
 
 
 }

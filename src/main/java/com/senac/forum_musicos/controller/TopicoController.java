@@ -9,6 +9,7 @@ import com.senac.forum_musicos.service.TopicoService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -43,11 +44,18 @@ public class TopicoController {
 
     }
 
-    @PostMapping("/criarTopico")
+//    @PostMapping("/criarTopico")
+//    @Operation(summary = "Criar Tópico",description = "End point para criação de um tópico")
+//    public ResponseEntity<TopicoDTOResponse> criarTopico(@Valid @RequestBody TopicoDTORequest topicoDTORequest){
+//        return ResponseEntity.status(HttpStatus.CREATED).body(this.topicoService.criarTopico(topicoDTORequest));
+//    }
+
+    @PostMapping("/criarTopico/{usuarioId}")
     @Operation(summary = "Criar Tópico",description = "End point para criação de um tópico")
-    public ResponseEntity<TopicoDTOResponse> criarTopico(@Valid @RequestBody TopicoDTORequest topicoDTORequest){
-        return ResponseEntity.status(HttpStatus.CREATED).body(this.topicoService.criarTopico(topicoDTORequest));
+    public ResponseEntity<TopicoDTOResponse> criarTopico(@PathVariable("usuarioId")Integer usuarioId, @RequestBody TopicoDTORequest topicoDTORequest){
+        return ResponseEntity.status(HttpStatus.CREATED).body(this.topicoService.criarTopico(usuarioId,topicoDTORequest));
     }
+
 
     @PutMapping("/atualizarTopico/{topicoId}")
     @Operation(summary = "Atualizar Tópico", description = "End point para atualizar um tópico já existente")

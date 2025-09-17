@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.websocket.ClientEndpoint;
 
+import java.io.File;
 import java.sql.Blob;
 import java.time.LocalDateTime;
 import java.util.Set;
@@ -22,7 +23,7 @@ public class Post {
     private String texto;
 
     @Column(name="post_arquivo")
-    private Blob arquivo;
+    private File arquivo;
 
     @Column(name="post_data_criacao")
     private LocalDateTime data;
@@ -62,11 +63,11 @@ public class Post {
         this.texto = texto;
     }
 
-    public Blob getArquivo() {
+    public File getArquivo() {
         return arquivo;
     }
 
-    public void setArquivo(Blob arquivo) {
+    public void setArquivo(File arquivo) {
         this.arquivo = arquivo;
     }
 

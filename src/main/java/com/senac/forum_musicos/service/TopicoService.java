@@ -42,22 +42,39 @@ public class TopicoService {
     }
 
 
-    public TopicoDTOResponse criarTopico(TopicoDTORequest topicoDTORequest){
-        Usuario usuario = usuarioRepository.findById(topicoDTORequest.getUsuario())
-                .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
+//    public TopicoDTOResponse criarTopico(TopicoDTORequest topicoDTORequest){
+//        Usuario usuario = usuarioRepository.findById(topicoDTORequest.getUsuario())
+//                .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
+//
+//        Topico topico = modelMapper.map(topicoDTORequest, Topico.class);
+//
+//        // Setar o usuário no tópico
+//        topico.setUsuario(usuario);
+//
+//
+//        // Salvar
+//        Topico topicoSave = this.topicoRepository.save(topico);
+//
+//        // Mapear para DTO de resposta
+//        return modelMapper.map(topicoSave, TopicoDTOResponse.class);
+//    }
+public TopicoDTOResponse criarTopico(Integer usuarioId,TopicoDTORequest topicoDTORequest){
+    Usuario usuario = usuarioRepository.findById(usuarioId)
+            .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
 
-        Topico topico = modelMapper.map(topicoDTORequest, Topico.class);
+    Topico topico = modelMapper.map(topicoDTORequest, Topico.class);
 
-        // Setar o usuário no tópico
-        topico.setUsuario(usuario);
+    // Setar o usuário no tópico
+    topico.setUsuario(usuario);
 
 
-        // Salvar
-        Topico topicoSave = this.topicoRepository.save(topico);
+    // Salvar
+    Topico topicoSave = this.topicoRepository.save(topico);
 
-        // Mapear para DTO de resposta
-        return modelMapper.map(topicoSave, TopicoDTOResponse.class);
-    }
+    // Mapear para DTO de resposta
+    return modelMapper.map(topicoSave, TopicoDTOResponse.class);
+}
+
     public TopicoDTOResponse atualizarTopico(Integer topicoId, TopicoDTORequest topicoDTORequest){
         Topico topico = this.listarTopicoPorId(topicoId);
         if(topico!=null){

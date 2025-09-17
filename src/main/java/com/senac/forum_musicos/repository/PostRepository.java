@@ -22,4 +22,7 @@ public interface PostRepository extends JpaRepository<Post, Integer> {
     List<Post> listarPosts();
     @Query("SELECT p FROM Post p where p.status >= 0 AND p.id = :id")
     Post listarPostPorId(@Param("id") Integer postId);
+
+    @Query("SELECT p FROM Post p where p.status >=0 and p.usuario.id = :usuarioId")
+    List<Post> listarPostsUsuadio(@Param("usuarioId")Integer usuarioId);
 }
