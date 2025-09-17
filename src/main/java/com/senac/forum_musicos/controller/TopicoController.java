@@ -44,17 +44,17 @@ public class TopicoController {
 
     }
 
-//    @PostMapping("/criarTopico")
-//    @Operation(summary = "Criar Tópico",description = "End point para criação de um tópico")
-//    public ResponseEntity<TopicoDTOResponse> criarTopico(@Valid @RequestBody TopicoDTORequest topicoDTORequest){
-//        return ResponseEntity.status(HttpStatus.CREATED).body(this.topicoService.criarTopico(topicoDTORequest));
-//    }
-
-    @PostMapping("/criarTopico/{usuarioId}")
+    @PostMapping("/criarTopico")
     @Operation(summary = "Criar Tópico",description = "End point para criação de um tópico")
-    public ResponseEntity<TopicoDTOResponse> criarTopico(@PathVariable("usuarioId")Integer usuarioId, @RequestBody TopicoDTORequest topicoDTORequest){
-        return ResponseEntity.status(HttpStatus.CREATED).body(this.topicoService.criarTopico(usuarioId,topicoDTORequest));
+    public ResponseEntity<TopicoDTOResponse> criarTopico(@Valid @RequestBody TopicoDTORequest topicoDTORequest){
+        return ResponseEntity.status(HttpStatus.CREATED).body(this.topicoService.criarTopico(topicoDTORequest));
     }
+
+//    @PostMapping("/criarTopico/{usuarioId}")
+//    @Operation(summary = "Criar Tópico",description = "End point para criação de um tópico")
+//    public ResponseEntity<TopicoDTOResponse> criarTopico(@PathVariable("usuarioId")Integer usuarioId, @RequestBody TopicoDTORequest topicoDTORequest){
+//        return ResponseEntity.status(HttpStatus.CREATED).body(this.topicoService.criarTopico(usuarioId,topicoDTORequest));
+//    }
 
 
     @PutMapping("/atualizarTopico/{topicoId}")

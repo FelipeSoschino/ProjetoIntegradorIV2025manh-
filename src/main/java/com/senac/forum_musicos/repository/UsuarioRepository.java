@@ -15,7 +15,7 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Integer> {
     @Modifying
     @Transactional
     @Query("UPDATE Usuario p SET p.status = -1 where p.id = :id")
-    void apagarUsuario(Integer usuarioId);
+    void apagarUsuario(@Param("id") Integer usuarioId);
 
     @Query("SELECT p FROM Usuario p where p.status >= 0")
     List<Usuario> listarUsuarios();

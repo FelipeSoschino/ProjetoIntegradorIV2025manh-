@@ -1,6 +1,7 @@
 package com.senac.forum_musicos.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.senac.forum_musicos.config.FileAttributeConverter;
 import jakarta.persistence.*;
 import jakarta.websocket.ClientEndpoint;
 
@@ -22,7 +23,9 @@ public class Post {
     @Column(name="post_texto")
     private String texto;
 
-    @Column(name="post_arquivo")
+
+    @Column(name="post_arquivo", nullable = true)
+    @Convert(converter = FileAttributeConverter.class)
     private File arquivo;
 
     @Column(name="post_data_criacao")
@@ -38,7 +41,7 @@ public class Post {
 
     @ManyToOne
     @JsonIgnore
-    @JoinColumn(name = "topico_id", nullable = false)
+    @JoinColumn(name = "topico_id", nullable = true)
     private Topico topico;
 
     @OneToMany(mappedBy = "post")

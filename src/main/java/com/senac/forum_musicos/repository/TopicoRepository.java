@@ -16,7 +16,7 @@ public interface TopicoRepository extends JpaRepository<Topico, Integer> {
     @Modifying
     @Transactional
     @Query("UPDATE Topico p SET p.status = -1 where p.id = :id")
-    void apagarTopico(Integer topicoId);
+    void apagarTopico(@Param("id") Integer topicoId);
 
     @Query("SELECT p FROM Topico p where p.status >= 0")
     List<Topico> listarTopicos();

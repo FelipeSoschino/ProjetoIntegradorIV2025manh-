@@ -31,4 +31,45 @@ public class ComentarioDTOResponse {
     private String texto;
 
     private int status;
+
+    public int getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(int usuario) {
+        this.usuario = usuario;
+    }
+
+    public int getPost() {
+        return post;
+    }
+
+    public void setPost(int post) {
+        this.post = post;
+    }
+
+    public int getTopico() {
+        return topico;
+    }
+
+    public void setTopico(int topico) {
+        this.topico = topico;
+    }
+
+    public int getResposta() {
+        return resposta;
+    }
+
+    public void setResposta(int resposta) {
+        this.resposta = resposta;
+    }
+
+
+    private int usuario;
+
+    private int post;
+
+    private int topico;
+
+    private int resposta;
 }

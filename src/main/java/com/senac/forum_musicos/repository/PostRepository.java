@@ -16,7 +16,7 @@ public interface PostRepository extends JpaRepository<Post, Integer> {
     @Modifying
     @Transactional
     @Query("UPDATE Post p SET p.status = -1 where p.id = :id")
-    void apagarPost(Integer postId);
+    void apagarPost(@Param("id") Integer postId);
 
     @Query("SELECT p FROM Post p where p.status >= 0")
     List<Post> listarPosts();

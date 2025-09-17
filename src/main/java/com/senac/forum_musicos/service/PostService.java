@@ -49,17 +49,26 @@ public class PostService {
 
 
     public PostDTOResponse criarPost(PostDTORequest postDTORequest){
-        Usuario usuario = usuarioRepository.findById(postDTORequest.getUsuario())
-                .orElseThrow(()-> new RuntimeException("Usuario não encontrado"));
+        Usuario usuario = usuarioRepository.listarUsuarioPorId((postDTORequest.getUsuario()));
         Topico topico = topicoRepository.findById(postDTORequest.getTopico()).orElse(null);
 
-        Post post = modelMapper.map(postDTORequest, Post.class);
-
+        Post post = new Post();
+        post.setTexto(postDTORequest.getTexto());
+        post.setData(postDTORequest.getData());
+        post.setStatus(postDTORequest.getStatus());
         post.setUsuario(usuario);
         post.setTopico(topico);
 
         Post postSave = this.postRepository.save(post);
-        PostDTOResponse postDTOResponse = modelMapper.map(postSave, PostDTOResponse.class);
+        PostDTOResponse postDTOResponse = new PostDTOResponse();
+//        modelMapper.map(postSave, postDTOResponse);
+        postDTOResponse.setTexto(postSave.getTexto());
+        postDTOResponse.setData(postSave.getData());
+        postDTOResponse.setId(postSave.getId());
+        postDTOResponse.setStatus(postSave.getStatus());
+        postDTOResponse.setArquivo(postSave.getArquivo());
+        postDTOResponse.setTopico(postSave.getTopico().getId());
+        postDTOResponse.setUsuario(postSave.getUsuario().getId());
         return postDTOResponse;}
 
     public PostDTOResponse atualizarPost(Integer postId, PostDTORequest postDTORequest){

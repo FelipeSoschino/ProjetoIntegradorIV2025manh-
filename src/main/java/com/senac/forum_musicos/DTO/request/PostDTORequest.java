@@ -2,6 +2,7 @@ package com.senac.forum_musicos.DTO.request;
 
 import java.io.File;
 import java.sql.Blob;
+import java.time.LocalDateTime;
 
 public class PostDTORequest {
 
@@ -43,6 +44,26 @@ public class PostDTORequest {
     private int topico;
 
     private File arquivo;
+
+    public LocalDateTime getData() {
+        return data;
+    }
+
+    public void setData(LocalDateTime data) {
+        this.data = data;
+    }
+
+    private LocalDateTime data;
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
+    private int status;
 
 
 }

@@ -56,14 +56,22 @@ public class ComentarioService {
 
         Topico topico = topicoRepository.findById(comentarioDTORequest.getTopico()).orElse(null);
 
-        Comentario comentario = modelMapper.map(comentarioDTORequest, Comentario.class);
-
+        Comentario comentario = new Comentario();
+        comentario.setStatus(comentarioDTORequest.getStatus());
+        comentario.setTexto(comentarioDTORequest.getTexto());
         comentario.setUsuario(usuario);
         comentario.setPost(post);
         comentario.setTopico(topico);
 
         Comentario comentarioSave = this.comentarioRepository.save(comentario);
-        ComentarioDTOResponse comentarioDTOResponse = modelMapper.map(comentarioSave, ComentarioDTOResponse.class);
+        ComentarioDTOResponse comentarioDTOResponse = new ComentarioDTOResponse();
+        comentarioDTOResponse.setId(comentarioSave.getId());
+        comentarioDTOResponse.setStatus(comentarioSave.getStatus());
+        comentarioDTOResponse.setTexto(comentarioSave.getTexto());
+        comentarioDTOResponse.setUsuario(comentarioSave.getUsuario().getId());
+        comentarioDTOResponse.setPost(comentarioSave.getPost().getId());
+        comentarioDTOResponse.setTopico(comentarioSave.getTopico().getId());
+//        ComentarioDTOResponse comentarioDTOResponse = modelMapper.map(comentarioSave, ComentarioDTOResponse.class);
         return comentarioDTOResponse;}
 
     public ComentarioDTOResponse atualizarComentario(Integer comentarioId, ComentarioDTORequest comentarioDTORequest){

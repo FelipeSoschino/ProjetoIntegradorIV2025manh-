@@ -156,7 +156,7 @@ public class Usuario {
     @OneToMany(mappedBy = "usuario")
     public Set<Topico> topicos;
 
-    @OneToMany(mappedBy = "usuario")
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
     public Set<Post> posts;
 
     @OneToMany(mappedBy = "usuario")
@@ -167,6 +167,7 @@ public class Usuario {
 
     @OneToMany(mappedBy = "usuario")
     public Set<Participa> participa;
+
 
 
 }
