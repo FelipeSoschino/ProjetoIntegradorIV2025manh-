@@ -46,6 +46,9 @@ public class Participa {
     @Column(name = "participa_status")
     private int status;
 
+
+
+
     @ManyToOne
     @JsonIgnore
     @JoinColumn(name = "usuario_id", nullable = false)

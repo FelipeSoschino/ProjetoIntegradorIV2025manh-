@@ -15,7 +15,7 @@ public class ComentarioDTORequest {
     }
 
     public void setStatus(int status) {
-        status = status;
+        this.status = status;
     }
 
     private String texto;

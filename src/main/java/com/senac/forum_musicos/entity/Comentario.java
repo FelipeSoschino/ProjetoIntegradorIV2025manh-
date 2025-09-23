@@ -1,6 +1,7 @@
 package com.senac.forum_musicos.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 
 import java.util.Set;
@@ -22,6 +23,53 @@ public class Comentario {
     @OneToMany(mappedBy = "comentario")
     public Set<Comentario> comentarios;
 
+    public int getIdUsuario() {
+        return idUsuario = this.usuario.getId();
+    }
+
+    public void setIdUsuario(int idUsuario) {
+        this.idUsuario = idUsuario;
+    }
+
+    public int getIdPost() {
+        return idPost = this.post.getId();
+    }
+
+    public void setIdPost(int idPost) {
+        this.idPost = idPost;
+    }
+
+    public int getIdTopico() {
+        return idTopico = this.topico.getId();
+    }
+
+    public void setIdTopico(int idTopico) {
+        this.idTopico = idTopico;
+    }
+
+    @Transient
+    @JsonProperty("idUsuario")
+    private int idUsuario;
+
+    @Transient
+    @JsonProperty("idPost")
+    private int idPost;
+
+    @Transient
+    @JsonProperty("idTopico")
+    private int idTopico;
+
+    public int getIdResposta() {
+        return idResposta = this.comentario.getId();
+    }
+
+    public void setIdResposta(int idResposta) {
+        this.idResposta = idResposta;
+    }
+
+    @Transient
+    @JsonProperty("idResposta")
+    private int idResposta;
 
     @ManyToOne
     @JsonIgnore
@@ -30,7 +78,7 @@ public class Comentario {
 
     @ManyToOne
     @JsonIgnore
-    @JoinColumn(name = "topico_id", nullable = false)
+    @JoinColumn(name = "topico_id")
     private Topico topico;
 
     @ManyToOne
@@ -40,8 +88,8 @@ public class Comentario {
 
     @ManyToOne
     @JsonIgnore
-    @JoinColumn(name = "comentario_resposta_id", nullable = false)
-    private Comentario comentario;
+    @JoinColumn(name = "comentario_resposta_id")
+    private Comentario comentario; // Comentario Resposta
 
     public int getId() {
         return id;

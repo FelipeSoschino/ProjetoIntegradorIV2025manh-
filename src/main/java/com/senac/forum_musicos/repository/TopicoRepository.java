@@ -21,5 +21,5 @@ public interface TopicoRepository extends JpaRepository<Topico, Integer> {
     @Query("SELECT p FROM Topico p where p.status >= 0")
     List<Topico> listarTopicos();
     @Query("SELECT p FROM Topico p where p.status >= 0 AND p.id = :id")
-    Topico listarTopicoPorId(@Param("id") Integer Id);
+    Topico listarTopicoPorId(@Param("id") Integer topicoId);
 }

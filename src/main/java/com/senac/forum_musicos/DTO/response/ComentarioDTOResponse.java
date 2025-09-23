@@ -23,7 +23,7 @@ public class ComentarioDTOResponse {
     }
 
     public void setStatus(int status) {
-        status = status;
+        this.status = status;
     }
 
     private int id;
