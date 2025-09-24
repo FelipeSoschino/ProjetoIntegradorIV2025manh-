@@ -3,7 +3,6 @@ package com.senac.forum_musicos.entity;
 import jakarta.persistence.*;
 
 import java.io.File;
-import java.sql.Blob;
 import java.time.LocalDateTime;
 import java.util.Set;
 

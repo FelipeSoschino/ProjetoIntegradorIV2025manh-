@@ -78,7 +78,7 @@ public class Comentario {
 
     @ManyToOne
     @JsonIgnore
-    @JoinColumn(name = "topico_id")
+    @JoinColumn(name = "topico_id", nullable = true)
     private Topico topico;
 
     @ManyToOne

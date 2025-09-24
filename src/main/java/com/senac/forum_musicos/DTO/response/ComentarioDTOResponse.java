@@ -32,44 +32,43 @@ public class ComentarioDTOResponse {
 
     private int status;
 
-    public int getUsuario() {
+    public Integer getUsuario() {
         return usuario;
     }
 
-    public void setUsuario(int usuario) {
+    public void setUsuario(Integer usuario) {
         this.usuario = usuario;
     }
 
-    public int getPost() {
+    public Integer getPost() {
         return post;
     }
 
-    public void setPost(int post) {
+    public void setPost(Integer post) {
         this.post = post;
     }
 
-    public int getTopico() {
+    public Integer getTopico() {
         return topico;
     }
 
-    public void setTopico(int topico) {
+    public void setTopico(Integer topico) {
         this.topico = topico;
     }
 
-    public int getResposta() {
+    public Integer getResposta() {
         return resposta;
     }
 
-    public void setResposta(int resposta) {
+    public void setResposta(Integer resposta) {
         this.resposta = resposta;
     }
 
+    private Integer usuario;
 
-    private int usuario;
+    private Integer post;
 
-    private int post;
+    private Integer topico;
 
-    private int topico;
-
-    private int resposta;
+    private Integer resposta;
 }

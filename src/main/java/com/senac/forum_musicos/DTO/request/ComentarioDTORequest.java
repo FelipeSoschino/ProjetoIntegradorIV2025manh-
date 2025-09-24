@@ -20,45 +20,46 @@ public class ComentarioDTORequest {
 
     private String texto;
 
-    public int getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(int usuario) {
-        this.usuario = usuario;
-    }
-
-    public int getPost() {
-        return post;
-    }
-
-    public void setPost(int post) {
-        this.post = post;
-    }
-
-    public int getTopico() {
-        return topico;
-    }
-
-    public void setTopico(int topico) {
-        this.topico = topico;
-    }
-
-    public int getResposta() {
-        return resposta;
-    }
-
-    public void setResposta(int resposta) {
-        this.resposta = resposta;
-    }
 
     private int status;
 
-    private int usuario;
+    public Integer getUsuario() {
+        return usuario;
+    }
 
-    private int post;
+    public void setUsuario(Integer usuario) {
+        this.usuario = usuario;
+    }
 
-    private int topico;
+    public Integer getPost() {
+        return post;
+    }
 
-    private int resposta;
+    public void setPost(Integer post) {
+        this.post = post;
+    }
+
+    public Integer getTopico() {
+        return topico;
+    }
+
+    public void setTopico(Integer topico) {
+        this.topico = topico;
+    }
+
+    public Integer getResposta() {
+        return resposta;
+    }
+
+    public void setResposta(Integer resposta) {
+        this.resposta = resposta;
+    }
+
+    private Integer usuario;
+
+    private Integer post;
+
+    private Integer topico;
+
+    private Integer resposta;
 }

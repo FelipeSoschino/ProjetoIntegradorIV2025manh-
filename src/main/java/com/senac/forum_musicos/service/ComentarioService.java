@@ -51,19 +51,19 @@ public class ComentarioService {
         comentario.setUsuario(this.usuarioRepository.listarUsuarioPorId(comentarioDTORequest.getUsuario()));
         comentario.setPost(this.postRepository.listarPostPorId(comentarioDTORequest.getPost()));
         comentario.setTopico(this.topicoRepository.listarTopicoPorId(comentarioDTORequest.getTopico()));
-        comentario.setComentario(this.comentarioRepository.listarComentarioPorId(comentarioDTORequest.getResposta()));
+        comentario.setComentario(this.comentarioRepository.findById(comentarioDTORequest.getResposta()).orElse(null));
 
         Comentario comentarioSave = this.comentarioRepository.save(comentario);
 //
-//        ComentarioDTOResponse comentarioDTOResponse = new ComentarioDTOResponse();
-//        comentarioDTOResponse.setId(comentarioSave.getId());
-//        comentarioDTOResponse.setStatus(comentarioSave.getStatus());
-//        comentarioDTOResponse.setTexto(comentarioSave.getTexto());
-//        comentarioDTOResponse.setUsuario(comentarioSave.getIdUsuario());
-//        comentarioDTOResponse.setPost(comentarioSave.getIdPost());
-//        comentarioDTOResponse.setTopico(comentarioSave.getIdTopico());
-//        comentarioDTOResponse.setResposta(comentarioSave.getIdResposta());
-        ComentarioDTOResponse comentarioDTOResponse = modelMapper.map(comentarioSave, ComentarioDTOResponse.class);
+        ComentarioDTOResponse comentarioDTOResponse = new ComentarioDTOResponse();
+        comentarioDTOResponse.setId(comentarioSave.getId());
+        comentarioDTOResponse.setStatus(comentarioSave.getStatus());
+        comentarioDTOResponse.setTexto(comentarioSave.getTexto());
+        comentarioDTOResponse.setUsuario(comentarioSave.getIdUsuario());
+        comentarioDTOResponse.setPost(comentarioSave.getIdPost());
+        comentarioDTOResponse.setTopico(comentarioSave.getIdTopico());
+        comentarioDTOResponse.setResposta(comentarioSave.getIdResposta());
+//        ComentarioDTOResponse comentarioDTOResponse = modelMapper.map(comentarioSave, ComentarioDTOResponse.class);
         return comentarioDTOResponse;}
 
     public ComentarioDTOResponse atualizarComentario(Integer comentarioId, ComentarioDTORequest comentarioDTORequest){
