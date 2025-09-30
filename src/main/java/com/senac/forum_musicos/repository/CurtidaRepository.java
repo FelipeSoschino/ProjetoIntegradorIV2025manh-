@@ -16,7 +16,7 @@ public interface CurtidaRepository extends JpaRepository<Curtida, Integer> {
     @Modifying
     @Transactional
     @Query("UPDATE Curtida p SET p.status = -1 where p.id = :id")
-    void apagarCurtida(Integer curtidaId);
+    void apagarCurtida(@Param(("id")) Integer curtidaId);
 
     @Query("SELECT p FROM Curtida p where p.status >= 0")
     List<Curtida> listarCurtidas();

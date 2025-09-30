@@ -1,15 +1,13 @@
 package com.senac.forum_musicos.service;
 
-import com.senac.forum_musicos.DTO.request.TopicoDTORequest;
-import com.senac.forum_musicos.DTO.request.TopicoDTOUpdataRequest;
-import com.senac.forum_musicos.DTO.request.UsuarioDTORequest;
-import com.senac.forum_musicos.DTO.request.UsuarioDTOUpdateRequest;
+import com.senac.forum_musicos.DTO.request.*;
 import com.senac.forum_musicos.DTO.response.TopicoDTOResponse;
 import com.senac.forum_musicos.DTO.response.TopicoDTOUpdateResponse;
 import com.senac.forum_musicos.DTO.response.UsuarioDTOResponse;
 import com.senac.forum_musicos.DTO.response.UsuarioDTOUpdateResponse;
 import com.senac.forum_musicos.entity.Topico;
 import com.senac.forum_musicos.entity.Usuario;
+import com.senac.forum_musicos.repository.ParticipaRepository;
 import com.senac.forum_musicos.repository.TopicoRepository;
 import com.senac.forum_musicos.repository.UsuarioRepository;
 import org.modelmapper.ModelMapper;
@@ -22,13 +20,15 @@ import java.util.List;
 @Service
 public class TopicoService {
 
-    private TopicoRepository topicoRepository;
+    private final TopicoRepository topicoRepository;
 
-    private UsuarioRepository usuarioRepository;
+    private final UsuarioRepository usuarioRepository;
+    private final ParticipaService participaService;
 
-    public TopicoService(TopicoRepository topicoRepository, UsuarioRepository usuarioRepository){
+    public TopicoService(TopicoRepository topicoRepository, UsuarioRepository usuarioRepository, ParticipaService participaService){
         this.topicoRepository = topicoRepository;
         this.usuarioRepository = usuarioRepository;
+        this.participaService = participaService;
     }
     @Autowired
     private ModelMapper modelMapper;
@@ -43,19 +43,26 @@ public class TopicoService {
 
 
     public TopicoDTOResponse criarTopico(TopicoDTORequest topicoDTORequest){
-        Usuario usuario = usuarioRepository.findById(topicoDTORequest.getUsuario())
-                .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
+//        Usuario usuario = usuarioRepository.findById(topicoDTORequest.getUsuario())
+//                .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
 
-        Topico topico = modelMapper.map(topicoDTORequest, Topico.class);
+        Topico topico = new Topico();
+        modelMapper.map(topicoDTORequest, topico);
+
 
         // Setar o usuário no tópico
-        topico.setUsuario(usuario);
+        topico.setUsuario(usuarioRepository.listarUsuarioPorId(topicoDTORequest.getUsuario()));
 
 
         // Salvar
         Topico topicoSave = this.topicoRepository.save(topico);
 
         // Mapear para DTO de resposta
+        ParticipaDTORequest participaDTORequest = new ParticipaDTORequest();
+        participaDTORequest.setTopicoId(topicoSave.getId());
+        participaDTORequest.setUsuarioId(topicoSave.getIdUsuario());
+        participaDTORequest.setStatus(0);
+        this.participaService.criarParticipa(participaDTORequest);
         return modelMapper.map(topicoSave, TopicoDTOResponse.class);
     }
 //public TopicoDTOResponse criarTopico(Integer usuarioId,TopicoDTORequest topicoDTORequest){

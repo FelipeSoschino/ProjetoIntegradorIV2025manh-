@@ -23,4 +23,26 @@ public class ParticipaDTOResponse {
     private int id;
 
 
+    public int getUsuarioId() {
+        return usuarioId;
+    }
+
+    public void setUsuarioId(int usuarioId) {
+        this.usuarioId = usuarioId;
+    }
+
+    public int getTopicoId() {
+        return idTopico;
+    }
+
+    public void setTopicoId(Integer idTopico) {
+        this.idTopico = idTopico;
+    }
+
+    private int usuarioId;
+
+    private Integer idTopico;
+
+
+
 }

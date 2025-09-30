@@ -38,15 +38,15 @@ public class Instrumento {
     private String nome;
 
     public int getStatus() {
-        return Status;
+        return status;
     }
 
     public void setStatus(int status) {
-        Status = status;
+        status = status;
     }
 
     @Column(name = "instrumento_status")
-    private int Status;
+    private int status;
 
     @ManyToOne
     @JsonIgnore

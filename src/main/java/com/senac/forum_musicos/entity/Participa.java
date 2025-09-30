@@ -1,6 +1,7 @@
 package com.senac.forum_musicos.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 
 @Entity
@@ -46,6 +47,30 @@ public class Participa {
     @Column(name = "participa_status")
     private int status;
 
+
+    public int getIdUsuario() {
+        return idUsuario = this.usuario.getId();
+    }
+
+    public void setIdUsuario(int idUsuario) {
+        this.idUsuario = idUsuario;
+    }
+
+    @Transient
+    @JsonProperty("idUsuario")
+    private int idUsuario;
+
+    public int getIdTopico() {
+        return idTopico = this.topico.getId();
+    }
+
+    public void setIdTopico(int idTopico) {
+        this.idTopico = idTopico;
+    }
+
+    @Transient
+    @JsonProperty("idTopico")
+    private int idTopico;
 
 
 

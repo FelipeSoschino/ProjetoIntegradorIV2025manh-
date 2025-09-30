@@ -11,6 +11,8 @@ import com.senac.forum_musicos.DTO.response.ParticipaDTOUpdateResponse;
 import com.senac.forum_musicos.entity.Curtida;
 import com.senac.forum_musicos.entity.Participa;
 import com.senac.forum_musicos.repository.CurtidaRepository;
+import com.senac.forum_musicos.repository.PostRepository;
+import com.senac.forum_musicos.repository.UsuarioRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,10 +22,15 @@ import java.util.List;
 @Service
 public class CurtidaService {
 
-    private CurtidaRepository curtidaRepository;
+    private final CurtidaRepository curtidaRepository;
+    private final UsuarioRepository usuarioRepository;
+    private final PostRepository postRepository;
 
-    public CurtidaService(CurtidaRepository curtidaRepository){
+
+    public CurtidaService(CurtidaRepository curtidaRepository,UsuarioRepository usuarioRepository, PostRepository postRepository){
         this.curtidaRepository = curtidaRepository;
+        this.usuarioRepository = usuarioRepository;
+        this.postRepository = postRepository;
     }
 
     @Autowired
@@ -37,7 +44,10 @@ public class CurtidaService {
     }
 
     public CurtidaDTOResponse criarCurtida(CurtidaDTORequest curtidaDTORequest){
-        Curtida curtida = modelMapper.map(curtidaDTORequest, Curtida.class);
+        Curtida curtida = new Curtida();
+        curtida.setStatus(curtidaDTORequest.getStatus());
+        curtida.setUsuario(usuarioRepository.listarUsuarioPorId(curtidaDTORequest.getIdUsuario()));
+        curtida.setPost(postRepository.listarPostPorId(curtidaDTORequest.getIdPost()));
 
         Curtida curtidaSave = this.curtidaRepository.save(curtida);
         CurtidaDTOResponse curtidaDTOResponse = modelMapper.map(curtidaSave, CurtidaDTOResponse.class);

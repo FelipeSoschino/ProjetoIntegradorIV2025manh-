@@ -49,26 +49,26 @@ public class PostService {
 
 
     public PostDTOResponse criarPost(PostDTORequest postDTORequest){
-        Usuario usuario = usuarioRepository.listarUsuarioPorId((postDTORequest.getUsuario()));
-        Topico topico = topicoRepository.findById(postDTORequest.getTopico()).orElse(null);
+//        Usuario usuario = usuarioRepository.listarUsuarioPorId((postDTORequest.getUsuario()));
+//        Topico topico = topicoRepository.findById(postDTORequest.getTopico()).orElse(null);
 
         Post post = new Post();
         post.setTexto(postDTORequest.getTexto());
         post.setData(postDTORequest.getData());
         post.setStatus(postDTORequest.getStatus());
-        post.setUsuario(usuario);
-        post.setTopico(topico);
+        post.setUsuario(usuarioRepository.listarUsuarioPorId(postDTORequest.getUsuario()));
+        post.setTopico(topicoRepository.listarTopicoPorId(postDTORequest.getTopico()));
 
         Post postSave = this.postRepository.save(post);
-        PostDTOResponse postDTOResponse = new PostDTOResponse();
-//        modelMapper.map(postSave, postDTOResponse);
-        postDTOResponse.setTexto(postSave.getTexto());
-        postDTOResponse.setData(postSave.getData());
-        postDTOResponse.setId(postSave.getId());
-        postDTOResponse.setStatus(postSave.getStatus());
-        postDTOResponse.setArquivo(postSave.getArquivo());
-        postDTOResponse.setTopico(postSave.getTopico().getId());
-        postDTOResponse.setUsuario(postSave.getUsuario().getId());
+//        PostDTOResponse postDTOResponse = new PostDTOResponse();
+        PostDTOResponse postDTOResponse = modelMapper.map(postSave, PostDTOResponse.class);
+//        postDTOResponse.setTexto(postSave.getTexto());
+//        postDTOResponse.setData(postSave.getData());
+//        postDTOResponse.setId(postSave.getId());
+//        postDTOResponse.setStatus(postSave.getStatus());
+//        postDTOResponse.setArquivo(postSave.getArquivo());
+//        postDTOResponse.setTopico(postSave.getTopico().getId());
+//        postDTOResponse.setUsuario(postSave.getUsuario().getId());
         return postDTOResponse;}
 
     public PostDTOResponse atualizarPost(Integer postId, PostDTORequest postDTORequest){

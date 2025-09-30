@@ -54,12 +54,12 @@ public class TopicoDTORequest {
     private LocalDateTime data;
 
     public int getUsuario() {
-        return usuario;
+        return idUsuario;
     }
 
     public void setUsuario(int usuario) {
-        this.usuario = usuario;
+        this.idUsuario = usuario;
     }
 
-    private int usuario;
+    private int idUsuario;
 }

@@ -12,4 +12,24 @@ public class ParticipaDTORequest {
 
     private int status;
 
+    public int getUsuarioId() {
+        return usuarioId;
+    }
+
+    public void setUsuarioId(int usuarioId) {
+        this.usuarioId = usuarioId;
+    }
+
+    public int getTopicoId() {
+        return topicoId;
+    }
+
+    public void setTopicoId(int topicoId) {
+        this.topicoId = topicoId;
+    }
+
+    private int usuarioId;
+
+    private int topicoId;
+
 }

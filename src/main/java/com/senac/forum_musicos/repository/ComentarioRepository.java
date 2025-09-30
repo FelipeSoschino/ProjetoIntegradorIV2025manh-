@@ -16,7 +16,7 @@ public interface ComentarioRepository extends JpaRepository<Comentario, Integer>
     @Modifying
     @Transactional
     @Query("UPDATE Comentario p SET p.status = -1 where p.id = :id")
-    void apagarComentario(Integer comentarioId);
+    void apagarComentario(@Param(("id")) Integer comentarioId);
 
     @Query("SELECT p FROM Comentario p where p.status >= 0")
     List<Comentario> listarComentarios();

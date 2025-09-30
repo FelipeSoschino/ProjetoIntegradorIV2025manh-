@@ -39,11 +39,11 @@ public class Comentario {
         this.idPost = idPost;
     }
 
-    public int getIdTopico() {
+    public Integer getIdTopico() {
         return idTopico = this.topico.getId();
     }
 
-    public void setIdTopico(int idTopico) {
+    public void setIdTopico(Integer idTopico) {
         this.idTopico = idTopico;
     }
 
@@ -57,19 +57,19 @@ public class Comentario {
 
     @Transient
     @JsonProperty("idTopico")
-    private int idTopico;
+    private Integer idTopico;
 
-    public int getIdResposta() {
+    public Integer getIdResposta() {
         return idResposta = this.comentario.getId();
     }
 
-    public void setIdResposta(int idResposta) {
+    public void setIdResposta(Integer idResposta) {
         this.idResposta = idResposta;
     }
 
     @Transient
     @JsonProperty("idResposta")
-    private int idResposta;
+    private Integer idResposta;
 
     @ManyToOne
     @JsonIgnore

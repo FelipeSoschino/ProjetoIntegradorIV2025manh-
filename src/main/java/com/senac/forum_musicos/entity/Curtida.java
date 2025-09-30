@@ -1,6 +1,7 @@
 package com.senac.forum_musicos.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 
 @Entity
@@ -45,6 +46,31 @@ public class Curtida {
 
     @Column(name = "curtida_status")
     private int status;
+
+
+    public Integer getIdUsuario() {
+        return idUsuario = this.usuario.getId();
+    }
+
+    public void setIdUsuario(Integer idUsuario) {
+        this.idUsuario = idUsuario;
+    }
+
+    public Integer getIdPost() {
+        return idPost = this.post.getId();
+    }
+
+    public void setIdPost(Integer idPost) {
+        this.idPost = idPost;
+    }
+
+    @Transient
+    @JsonProperty("idUsuario")
+    private Integer idUsuario;
+
+    @Transient
+    @JsonProperty("idPost")
+    private Integer idPost;
 
     @ManyToOne
     @JsonIgnore

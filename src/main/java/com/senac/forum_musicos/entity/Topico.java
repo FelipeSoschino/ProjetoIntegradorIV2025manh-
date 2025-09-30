@@ -1,6 +1,7 @@
 package com.senac.forum_musicos.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
@@ -110,6 +111,17 @@ public class Topico {
     @Column(name="topico_categoria")
     private int categoria;
 
+    public int getIdUsuario() {
+        return idUsuario = this.usuario.getId();
+    }
+
+    public void setIdUsuario(int idUsuario) {
+        this.idUsuario = idUsuario;
+    }
+
+    @Transient
+    @JsonProperty("idUsuairo")
+    private int idUsuario;
 
     @ManyToOne
     @JsonIgnore

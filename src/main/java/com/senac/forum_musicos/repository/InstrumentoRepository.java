@@ -16,7 +16,7 @@ public interface InstrumentoRepository extends JpaRepository<Instrumento, Intege
 //    @Modifying
 //    @Transactional
 //    @Query("UPDATE Instrumento p SET p.status = -1 where p.id = :id")
-//    void apagarInstrumento(Integer instrumentoId);
+//    void apagarInstrumento(@Param(("id")) Integer instrumentoId);
 //
 //    @Query("SELECT p FROM Instrumento p where p.status >= 0")
 //    List<Instrumento> listarInstrumentos();

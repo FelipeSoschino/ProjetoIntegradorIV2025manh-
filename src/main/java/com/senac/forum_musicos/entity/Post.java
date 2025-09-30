@@ -1,6 +1,7 @@
 package com.senac.forum_musicos.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.senac.forum_musicos.config.FileAttributeConverter;
 import jakarta.persistence.*;
 import jakarta.websocket.ClientEndpoint;
@@ -34,6 +35,32 @@ public class Post {
     @Column(name="post_status")
     private int status;
 
+    public int getIdUsuario() {
+        return idUsuario = this.usuario.getId();
+    }
+
+    public void setIdUsuario(int idUsuario) {
+        this.idUsuario = idUsuario;
+    }
+
+    public Integer getIdTopico() {
+        if(this.topico == null){
+        return null;}
+        return idTopico = this.topico.getId();
+    }
+
+    public void setIdTopico(Integer idTopico) {
+        this.idTopico = idTopico;
+    }
+
+    @Transient
+    @JsonProperty("idUsuario")
+    private int idUsuario;
+
+    @Transient
+    @JsonProperty("idTopico")
+    private Integer idTopico;
+
     @ManyToOne
     @JsonIgnore
     @JoinColumn(name = "usuario_id", nullable = false)
@@ -41,7 +68,7 @@ public class Post {
 
     @ManyToOne
     @JsonIgnore
-    @JoinColumn(name = "topico_id", nullable = true)
+    @JoinColumn(name = "topico_id",nullable = true)
     private Topico topico;
 
     @OneToMany(mappedBy = "post")
@@ -99,7 +126,9 @@ public class Post {
     }
 
     public Topico getTopico() {
-        return topico;
+        if(this.topico != null){
+        return topico;}
+        return null;
     }
 
     public void setTopico(Topico topico) {

@@ -14,13 +14,13 @@ import java.util.List;
 @Repository
 public interface ParticipaRepository extends JpaRepository<Participa, Integer> {
 
-//    @Modifying
-//    @Transactional
-//    @Query("UPDATE Participa p SET p.status = -1 where p.id = :id")
-//    void apagarParticipa(Integer participaId);
-//
-//    @Query("SELECT p FROM Participa p where p.status >= 0")
-//    List<Participa> listarParticipas();
-//    @Query("SELECT p FROM Participa p where p.status >= 0 AND p.id = :id")
-//    Participa listarParticipaPorId(@Param("id") Integer participaId);
+    @Modifying
+    @Transactional
+    @Query("UPDATE Participa p SET p.status = -1 where p.id = :id")
+    void apagarParticipa(@Param("id") Integer participaId);
+
+    @Query("SELECT p FROM Participa p where p.status >= 0")
+    List<Participa> listarParticipas();
+    @Query("SELECT p FROM Participa p where p.status >= 0 AND p.id = :id")
+    Participa listarParticipaPorId(@Param("id") Integer participaId);
 }

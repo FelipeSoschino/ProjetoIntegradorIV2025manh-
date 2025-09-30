@@ -28,7 +28,7 @@ public class PostDTORequest {
         return topico;
     }
 
-    public void setTopico(int topico) {
+    public void setTopico(Integer topico) {
         this.topico = topico;
     }
 
@@ -41,7 +41,7 @@ public class PostDTORequest {
     }
 
     private int usuario;
-    private int topico;
+    private Integer topico;
 
     private File arquivo;
 
