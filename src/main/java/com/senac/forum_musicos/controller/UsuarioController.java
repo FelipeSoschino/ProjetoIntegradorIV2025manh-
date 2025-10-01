@@ -1,7 +1,9 @@
 package com.senac.forum_musicos.controller;
 
+import com.senac.forum_musicos.DTO.request.UsuarioDTOLoginRequest;
 import com.senac.forum_musicos.DTO.request.UsuarioDTORequest;
 import com.senac.forum_musicos.DTO.request.UsuarioDTOUpdateRequest;
+import com.senac.forum_musicos.DTO.response.UsuarioDTOLoginResponse;
 import com.senac.forum_musicos.DTO.response.UsuarioDTOResponse;
 import com.senac.forum_musicos.DTO.response.UsuarioDTOUpdateResponse;
 import com.senac.forum_musicos.entity.Usuario;
@@ -51,6 +53,11 @@ public class UsuarioController {
         return ResponseEntity.status(HttpStatus.CREATED).body(this.usuarioService.criarUsuario(usuarioDTORequest));
     }
 
+    @PostMapping("/login")
+    @Operation(summary = "Realizar Login",description = "")
+    public ResponseEntity<UsuarioDTOLoginResponse> login(@RequestBody UsuarioDTOLoginRequest usuarioDTOLoginRequest){
+        return ResponseEntity.ok(usuarioService.login(usuarioDTOLoginRequest));
+    }
     @PutMapping("/atualizar/{usuarioId}")
     @Operation(summary = "Atualizar Usuario",description = "Endpont para atualizar os dados de um Usuario")
     public ResponseEntity<UsuarioDTOResponse> atualizarUsuario(@PathVariable("usuarioId")Integer usuarioId,

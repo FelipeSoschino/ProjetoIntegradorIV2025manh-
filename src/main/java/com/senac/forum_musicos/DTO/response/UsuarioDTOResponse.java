@@ -1,5 +1,6 @@
 package com.senac.forum_musicos.DTO.response;
 
+import java.io.File;
 import java.sql.Blob;
 import java.time.LocalDateTime;
 
@@ -55,11 +56,15 @@ public class UsuarioDTOResponse {
 
     private String bio;
 
-    public void setFoto(byte[] foto) {
+    public File getFoto() {
+        return foto;
+    }
+
+    public void setFoto(File foto) {
         this.foto = foto;
     }
 
-    private byte[] foto;
+    private File foto;
 
     private LocalDateTime data;
 
